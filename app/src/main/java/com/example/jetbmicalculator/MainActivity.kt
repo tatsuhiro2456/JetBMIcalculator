@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,25 +41,77 @@ class MainActivity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(30.dp))
 
                         //身長
-                        Text(
-                            text = "身長(cm)",
-                            color = Color(0XFFF85F6A),
-                            fontWeight = FontWeight.Bold
+                        PinkLabeldTextField(
+                            value = "",
+                            onValuechange = {},
+                            label = "身長（cm）",
+                            placeholder = "170",
                         )
-                        TextField(
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        PinkLabeldTextField(
+                            value = "",
+                            onValuechange = {},
+                            label = "体重（kg）",
+                            placeholder = "65",
+                        )
+                        Spacer(modifier = Modifier.height(30.dp))
+
+                        //計算する
+                        Button(
+                            onClick = { /*TODO*/ },
                             modifier = Modifier.fillMaxWidth(),
-                            value ="",
-                            onValueChange = {},
-                            colors = TextFieldDefaults.textFieldColors(
-                                backgroundColor = Color.Transparent
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = Color(0XFFF85F6A)
                             ),
-                            placeholder = { Text(text = "170")},
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                            singleLine = true,
+                        ) {
+                            Text(
+                                text = "計算する",
+                                color = Color.White,
+                                fontSize = 18.sp
+                                )
+                        }
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        // 結果を表示テキスト
+                        Text(
+                            text = "あなたのBMIは00.0です",
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            color = Color.Gray,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.ExtraBold,
                         )
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+fun PinkLabeldTextField(
+    value:String,
+    onValuechange: (String) ->Unit,
+    label:String,
+    placeholder:String,
+){
+    Column() {
+        Text(
+            text = label,
+            color = Color(0XFFF85F6A),
+            fontWeight = FontWeight.Bold
+        )
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value =value,
+            onValueChange = onValuechange,
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent
+            ),
+            placeholder = { Text(text = placeholder)},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true,
+        )
     }
 }
