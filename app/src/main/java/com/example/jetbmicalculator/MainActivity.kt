@@ -46,16 +46,16 @@ class MainActivity : ComponentActivity() {
 
                         //身長
                         PinkLabeldTextField(
-                            value = "",
-                            onValuechange = {},
+                            value = viewModel.height,
+                            onValuechange = { viewModel.height = it },
                             label = "身長（cm）",
                             placeholder = "170",
                         )
                         Spacer(modifier = Modifier.height(20.dp))
 
                         PinkLabeldTextField(
-                            value = "",
-                            onValuechange = {},
+                            value = viewModel.weight,
+                            onValuechange = { viewModel.weight = it },
                             label = "体重（kg）",
                             placeholder = "65",
                         )
